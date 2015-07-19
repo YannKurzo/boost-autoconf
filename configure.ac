@@ -8,6 +8,9 @@ AM_INIT_AUTOMAKE(
 )
 AC_PROG_CXX
 AC_LANG(C++)
+
+AX_BOOST_BASE([1.58.0]) 
+
 AC_CONFIG_HEADERS(
     [autoConfig.h]
 )
@@ -15,6 +18,7 @@ AC_CONFIG_FILES(
     [Makefile
     src/Makefile]
 )
+
 
 # ------------------------------------------------
 # Check for header files for getch

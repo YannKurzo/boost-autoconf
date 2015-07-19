@@ -76,12 +76,15 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
+build_triplet = @build@
+host_triplet = @host@
 bin_PROGRAMS = boost_autoconf$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/depcomp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/configure.ac
+am__aclocal_m4_deps = $(top_srcdir)/m4/m4-ax_boost_base.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
@@ -156,6 +159,8 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
+BOOST_CPPFLAGS = @BOOST_CPPFLAGS@
+BOOST_LDFLAGS = @BOOST_LDFLAGS@
 CPPFLAGS = @CPPFLAGS@
 CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
@@ -202,14 +207,22 @@ am__quote = @am__quote@
 am__tar = @am__tar@
 am__untar = @am__untar@
 bindir = @bindir@
+build = @build@
 build_alias = @build_alias@
+build_cpu = @build_cpu@
+build_os = @build_os@
+build_vendor = @build_vendor@
 builddir = @builddir@
 datadir = @datadir@
 datarootdir = @datarootdir@
 docdir = @docdir@
 dvidir = @dvidir@
 exec_prefix = @exec_prefix@
+host = @host@
 host_alias = @host_alias@
+host_cpu = @host_cpu@
+host_os = @host_os@
+host_vendor = @host_vendor@
 htmldir = @htmldir@
 includedir = @includedir@
 infodir = @infodir@
@@ -244,13 +257,15 @@ boost_autoconf_SOURCES = main.cc
 
 # Warning and errors
 AM_CPPFLAGS = -I$(srcdir)/include -std=gnu++11 -pedantic -Wall -Wextra \
-	-Wcast-align -Wcast-qual -Wctor-dtor-privacy \
-	-Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op \
-	-Wmissing-declarations -Wmissing-include-dirs -Wnoexcept \
-	-Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo \
-	-Wstrict-null-sentinel -Wstrict-overflow=5 -Wswitch-default \
-	-Wundef -Werror -Wno-unused -Wzero-as-null-pointer-constant \
+	-Wcast-align -Wcast-qual -Wdisabled-optimization -Wformat=2 \
+	-Winit-self -Wlogical-op -Wmissing-declarations \
+	-Wmissing-include-dirs -Wnoexcept -Woverloaded-virtual \
+	-Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel \
+	-Wstrict-overflow=5 -Wswitch-default -Werror -Wno-unused \
 	-Wuseless-cast
+
+# boost
+AM_CXXFLAGS = $(BOOST_CPPFLAGS)
 all: all-am
 
 .SUFFIXES:
@@ -558,7 +573,7 @@ uninstall-am: uninstall-binPROGRAMS
 	ps ps-am tags tags-am uninstall uninstall-am \
 	uninstall-binPROGRAMS
 
-#-Wsign-conversion -Wold-style-cast
+#-Wsign-conversion -Wold-style-cast -Wundef -Wzero-as-null-pointer-constant -Wctor-dtor-privacy
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
