@@ -19,8 +19,8 @@ This repository is used to test the boost library with the autoconf tools. The c
   * `make install`
   * The program can now be used.
 - If the configure script fails at finding the boost library, use the following command for the configuration:
-  * `../boost-autoconf--with-boost=/configure --with-boost=BOOST_PATH`
-  * `BOOST_PATH` is the path to the boost library
+  * `../boost-autoconf/configure --with-boost=BOOST_PATH`
+  * where `BOOST_PATH` is the path to the boost library
 
 ##### Compilation on Windows to be able to launch the program outside Cygwin
 - With the default configuration, the executable can only be used on Cygwin. To be able to use it as a normal program on Windows, some options must be passed to the configure script.
@@ -34,8 +34,8 @@ This repository is used to test the boost library with the autoconf tools. The c
   * `make`
   * The executable is located in `boost-autoconf_build/src/`
 - If the configure script fails at finding the boost library, use the following command for the configuration:
-  * `../boost-autoconf--with-boost=/configure --with-boost=BOOST_PATH CXX=x86_64-w64-mingw32-g++ CXXFLAGS="-static-libgcc -static-libstdc++"`
-  * `BOOST_PATH` is the path to the boost library
+  * `../boost-autoconf/configure --with-boost=BOOST_PATH CXX=x86_64-w64-mingw32-g++ CXXFLAGS="-static-libgcc -static-libstdc++"`
+  * where `BOOST_PATH` is the path to the boost library
 
 ##### Help
 - Help can be found by using:
