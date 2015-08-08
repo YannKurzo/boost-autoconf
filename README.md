@@ -8,7 +8,7 @@ This repository is used to test the boost library with the autoconf tools. The c
   * a UNIX like environment (Linux / Cygwin for Windows / ...)
   * the "make" command
   * The boost library must be installed
-  
+
 ##### Compilation
 - For the compilation, run the following commands:
   * `clone "https://github.com/YannKurzo/boost-autoconf.git"`
